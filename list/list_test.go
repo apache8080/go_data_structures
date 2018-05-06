@@ -3,8 +3,6 @@ package list
 import (
 	"testing"
 	"github.com/stretchr/testify/assert"
-
-
 )
 
 func TestAppend(t *testing.T) {
