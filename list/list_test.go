@@ -1,14 +1,14 @@
-package list_test
+package list
 
 import (
 	"testing"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/apache8080/go_data_structures/list"
+
 )
 
 func TestAppend(t *testing.T) {
-	l := list.NewList()
+	l := NewList()
 
 	for i := 0; i < 5; i++ {
 		l.Append(i)
@@ -24,7 +24,7 @@ func TestAppend(t *testing.T) {
 }
 
 func TestRemove(t *testing.T) {
-	l := list.NewList()
+	l := NewList()
 
 	for i := 0; i < 5; i++ {
 		l.Append(i)
