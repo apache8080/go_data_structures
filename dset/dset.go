@@ -35,8 +35,8 @@ func (this *DisjointSet) Union(a int, b int) error {
 		return errors.New("Invalid input values.")
 	}
 	
-	aVal := find(a)
-	bVal := find(b)
+	aVal := this.Find(a)
+	bVal := this.Find(b)
 
 	size := this.set[aVal] + this.set[bVal]
 	
