@@ -21,11 +21,12 @@ func NewList() *List {
 
 func (this *List) Append(val int) {
 	if this.head == nil {
-		this.head = &Node{val, this.tail}
+		this.head = &Node{val, nil}
 	} else {
 		node := &Node{val, nil}
 		if this.tail == nil {
 			this.tail = node
+			this.head.next = this.tail
 		} else {
 			temp := this.tail
 			this.tail = node
@@ -99,9 +100,9 @@ func (this *List) Find(val int) int {
 }
 
 func (this *List) Front() int {
-	return head
+	return this.head.val
 }
 
 func (this *List) Back() int {
-	return tail
+	return this.tail.val
 }
