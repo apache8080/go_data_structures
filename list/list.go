@@ -11,23 +11,26 @@ type Node struct {
 
 type List struct {
 	head *Node
+	tail *Node
 	size int
 }
 
 func NewList() *List {
-	return &List{nil, 0}
+	return &List{nil, nil, 0}
 }
 
 func (this *List) Append(val int) {
 	if this.head == nil {
-		this.head = &Node{val, nil}
+		this.head = &Node{val, this.tail}
 	} else {
-		curr := this.head
-		for curr.next != nil {
-			curr = curr.next
-		}
 		node := &Node{val, nil}
-		curr.next = node
+		if this.tail == nil {
+			this.tail = node
+		} else {
+			temp := this.tail
+			this.tail = node
+			temp.next = this.tail
+		}
 	}
 
 	this.size++
@@ -55,10 +58,11 @@ func (this *List) Remove(n int) error {
 		this.size--
 	} else if (n == this.size) {
 		curr := this.head;
-		for curr.next.next != nil {
+		for curr.next != this.tail {
 			curr = curr.next
 		}
 		curr.next = nil
+		this.tail = curr
 		this.size--
 	} else {
 		id := n - 1
@@ -71,6 +75,13 @@ func (this *List) Remove(n int) error {
 	}
 
 	return nil
+}
+
+func (this *List) FindRemove(val int) {
+	id := this.Find(val);
+	if (id != -1) {
+		this.Remove(id);
+	}
 }
 
 func (this *List) Find(val int) int {
@@ -87,4 +98,10 @@ func (this *List) Find(val int) int {
 	return -1
 }
 
+func (this *List) Front() int {
+	return head
+}
 
+func (this *List) Back() int {
+	return tail
+}
